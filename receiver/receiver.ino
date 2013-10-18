@@ -180,9 +180,7 @@ void loop(void)
       else
         printf("failed\n\r");
       radio.startListening();
-      if ( sensor_state ) {
-        led_state ^= sensor_state;
-      }
+      led_state = sensor_state;
       digitalWrite(led_pin, led_state);
     }
 
@@ -210,11 +208,8 @@ void loop(void)
         printf("Got buttons\n\r");
 
         // For each button, if the button now on, then toggle the LED
-        if ( sensor_state )
-        {
-          led_state ^= sensor_state;
-          digitalWrite(led_pin, led_state);
-        }
+        led_state = sensor_state;
+        digitalWrite(led_pin, led_state);
       }
     }
   }
