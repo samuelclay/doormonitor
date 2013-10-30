@@ -8,7 +8,7 @@ RF24 radio(9,10);
 const int role_pin = 6;
 const int sensor_pin = 3;
 const int led_pin = 4;
-const uint64_t pipe = 0xE8E8F0F0E1LL;
+const uint64_t pipe = 0xE8E8F0F0F1LL;
 
 typedef enum { 
     role_remote = 1, 
@@ -23,7 +23,7 @@ uint8_t sensor_state;
 void setup(void) {
     // set up the role pin
     pinMode(role_pin, INPUT);
-    digitalWrite(role_pin,HIGH);
+    digitalWrite(role_pin, HIGH);
     delay(20); // Just to get a solid reading on the role pin
 
     // read the address pin, establish our role
@@ -31,7 +31,7 @@ void setup(void) {
 
     Serial.begin(57600);
     printf_begin();
-    printf("\n\rRF24/examples/led_remote/\n\r");
+    Serial.print("\n\rRF24/examples/led_remote/\n\r");
     printf("ROLE: %s\n\r",role_friendly_name[role]);
 
     radio.begin();
@@ -55,8 +55,16 @@ void setup(void) {
 
     // Turn LED's ON until we start getting keys
     pinMode(led_pin,OUTPUT);
-    led_state = HIGH;
+    led_state = LOW;
     digitalWrite(led_pin, led_state);
+    int i = role == role_led ? 4 : 2;
+    int pause = role == role_led ? 100 : 300;
+    while (i--) {
+        delay(pause);
+        digitalWrite(led_pin, HIGH);
+        delay(pause);
+        digitalWrite(led_pin, LOW);
+    }
 }
 
 void loop(void) {
@@ -100,5 +108,18 @@ void loop(void) {
                 digitalWrite(led_pin, led_state);
             }
         }
+        
+        uint8_t incomingByte;
+        // send data only when you receive data:
+	if (Serial.available() > 0) {
+            // read the incoming byte:
+            incomingByte = Serial.read();
+            
+            // say what you got with both the ASCII and decimal representations
+            Serial.print("I received: ");
+            Serial.write(incomingByte);
+            Serial.print(" : ");
+            Serial.println(incomingByte, DEC);
+	}
     }
 }
