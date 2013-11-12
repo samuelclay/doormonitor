@@ -35,6 +35,7 @@ void setup(void) {
     printf("ROLE: %s\n\r",role_friendly_name[role]);
 
     radio.begin();
+    radio.setChannel(37);
 
     if (role == role_remote) {
         radio.openWritingPipe(pipe);
