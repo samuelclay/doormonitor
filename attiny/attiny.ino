@@ -1,5 +1,6 @@
 #include <avr/sleep.h> 
 #include <avr/interrupt.h> 
+#include <avr/wdt.h>
 
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -13,6 +14,9 @@ const int sensor_pin = 2;
 const int led_pin = 1;
 const int sleep_pin = 8;
 const uint64_t pipe = 0xE8E8F0F0F1LL;
+
+typedef enum { wdt_16ms = 0, wdt_32ms, wdt_64ms, wdt_128ms, wdt_250ms, 
+               wdt_500ms, wdt_1s, wdt_2s, wdt_4s, wdt_8s } wdt_prescalar_e;
 
 typedef enum { 
     role_remote = 1, 
@@ -43,22 +47,25 @@ void setup(void) {
     radio.setChannel(37);
     radio.setDataRate(RF24_250KBPS);
     radio.setAutoAck(pipe, true);
+//    radio.setRetries(15, 15);
 
     if (role == role_remote) {
         radio.openWritingPipe(pipe);
+      radio.stopListening();
     } else {
         radio.openReadingPipe(1,pipe);
-    }
-
-    if (role == role_led) {
         radio.startListening();
     }
 
-    radio.printDetails();
+//    radio.printDetails();
 
     if (role == role_remote) {
         pinMode(sensor_pin,INPUT);
         digitalWrite(sensor_pin,HIGH);
+    }
+    
+    if (role == role_led) {
+        setup_watchdog(wdt_2s);
     }
 
     // Turn LED's ON until we start getting keys
@@ -79,36 +86,48 @@ void setup(void) {
 }
 
 void loop(void) {
+    bool different = false;
+    
     if (role == role_remote) {
         // Get the current state of buttons, and
         // Test if the current state is different from the last state we sent
-        bool different = false;
         uint8_t state = ! digitalRead(sensor_pin);
         printf("Sensor state: %d\n", state);
         if (state != sensor_state) {
             different = true;
             sensor_state = state;
-            awakems = 0;
         }
 
         // Send the state of the buttons to the LED board
         if (different) {
             printf("Now sending...");
-            radio.stopListening();
-            bool ok = radio.write( &sensor_state, sizeof(uint8_t) );
-            if (ok) {
-                printf("ok\n\r");
-            } else {
-                printf("failed\n\r");
-            }
-            radio.startListening();
             led_state = sensor_state;
             digitalWrite(led_pin, led_state);
+            radio.powerUp();
+            delay(5);
+            int tries = 200;
+            bool ok = false;
+            while (!ok && tries) {
+                ok = radio.write( &sensor_state, sizeof(uint8_t) );
+                if (ok) {
+                    printf("ok\n\r");
+                } else {
+                    printf("failed\n\r");
+                    digitalWrite(sleep_pin, LOW);
+                    digitalWrite(led_pin, LOW);
+                    delay(50);        
+                    digitalWrite(sleep_pin, HIGH);            
+                    digitalWrite(led_pin, led_state);            
+                }
+                tries--;
+            }
+            radio.powerDown();
+            awakems = 0;
         }
 
-        delay(20);
-        awakems += 20;
-        if (awakems > 500) {
+//        delay(20);
+        awakems += 1;
+        if (awakems > 100) {
           sleepNow();
           awakems = 0;
         }
@@ -118,12 +137,17 @@ void loop(void) {
         if (radio.available()) {
             // Dump the payloads until we've gotten everything
             bool done = false;
+            awakems = 0;
             while (!done) {
                 done = radio.read( &sensor_state, sizeof(uint8_t) );
+            }
+//            if (led_state != sensor_state) {
+                different = true;
                 printf("Got buttons\n\r");
                 led_state = sensor_state;
                 digitalWrite(led_pin, led_state);
-            }
+                awakems = -1000;
+//            }
         }
         
         uint8_t incomingByte;
@@ -137,18 +161,43 @@ void loop(void) {
             Serial.write(incomingByte);
             Serial.print(" : ");
             Serial.println(incomingByte, DEC);
+            
+            awakems = 0;
 	}
+        
+        awakems += 1;
+        if (awakems > 200) {
+            sleepNow();
+            awakems = 0;
+        }
     }
 }
 #define BODS 7                   //BOD Sleep bit in MCUCR
 #define BODSE 2                  //BOD Sleep enable bit in MCUCR
 uint8_t mcucr1, mcucr2;
 
+
+void setup_watchdog(uint8_t prescalar)
+{
+  prescalar = min(9,prescalar);
+  uint8_t wdtcsr = prescalar & 7;
+  if ( prescalar & 8 )
+    wdtcsr |= _BV(WDP3);
+
+  MCUSR &= ~_BV(WDRF);
+  WDTCSR = _BV(WDCE) | _BV(WDE);
+  WDTCSR = _BV(WDCE) | wdtcsr | _BV(WDIE);
+}
+
 void sleepNow(void)
 {
-  
-    radio.powerDown();
     digitalWrite(sleep_pin, LOW);
+    if (role == role_remote) {
+        radio.powerDown();
+    } else {
+        radio.stopListening();
+        radio.powerDown();
+    }
     GIMSK |= _BV(INT0);                       //enable INT0
     MCUCR &= ~(_BV(ISC01) | _BV(ISC00));      //INT0 on low level
     ACSR |= _BV(ACD);                         //disable the analog comparator
@@ -171,8 +220,18 @@ void sleepNow(void)
     sleep_disable();               
     sei();                         //enable interrupts again (but INT0 is disabled from above)
     radio.powerUp();
+    if (role == role_led) {
+      radio.startListening();
+    }
     digitalWrite(sleep_pin, HIGH);
+    delay(5);
 }
 
-ISR(INT0_vect) {}  
+ISR(INT0_vect) {
+    awakems = 0;
+}  
 
+
+ISR(WDT_vect) {
+    awakems = 0;
+}

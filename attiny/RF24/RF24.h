@@ -572,6 +572,7 @@ public:
    * startListening, or powerUp().
    */
   void powerDown(void);
+  void standBy(void);
 
   /**
    * Leave low-power mode - making radio more responsive
