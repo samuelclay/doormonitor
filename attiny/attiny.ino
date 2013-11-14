@@ -7,12 +7,20 @@
 #include <RF24.h>
 #include <printf.h>
 
+#if defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny85__)
 RF24 radio(3,7);
-
 const int role_pin = 10;
 const int sensor_pin = 2;
 const int led_pin = 1;
 const int sleep_pin = 8;
+#else
+RF24 radio(3,7);
+const int role_pin = 10;
+const int sensor_pin = 2;
+const int led_pin = 1;
+const int sleep_pin = 8;
+#endif 
+
 const uint64_t pipe = 0xE8E8F0F0F1LL;
 
 typedef enum { wdt_16ms = 0, wdt_32ms, wdt_64ms, wdt_128ms, wdt_250ms, 
@@ -37,21 +45,22 @@ void setup(void) {
 
     // read the address pin, establish our role
     role = digitalRead(role_pin) ? role_remote : role_led;
-
+    digitalWrite(role_pin, HIGH);
+    
     Serial.begin(9600);
     printf_begin();
     Serial.print("\n\rRF24/examples/led_remote/\n\r");
     printf("ROLE: %s\n\r",role_friendly_name[role]);
 
     radio.begin();
-    radio.setChannel(37);
+    radio.setChannel(38);
     radio.setDataRate(RF24_250KBPS);
     radio.setAutoAck(pipe, true);
 //    radio.setRetries(15, 15);
 
     if (role == role_remote) {
         radio.openWritingPipe(pipe);
-      radio.stopListening();
+        radio.stopListening();
     } else {
         radio.openReadingPipe(1,pipe);
         radio.startListening();
@@ -105,7 +114,7 @@ void loop(void) {
             digitalWrite(led_pin, led_state);
             radio.powerUp();
             delay(5);
-            int tries = 200;
+            int tries = 50;
             bool ok = false;
             while (!ok && tries) {
                 ok = radio.write( &sensor_state, sizeof(uint8_t) );
@@ -125,7 +134,6 @@ void loop(void) {
             awakems = 0;
         }
 
-//        delay(20);
         awakems += 1;
         if (awakems > 100) {
           sleepNow();
@@ -141,13 +149,13 @@ void loop(void) {
             while (!done) {
                 done = radio.read( &sensor_state, sizeof(uint8_t) );
             }
-//            if (led_state != sensor_state) {
+            if (led_state != sensor_state) {
                 different = true;
                 printf("Got buttons\n\r");
                 led_state = sensor_state;
                 digitalWrite(led_pin, led_state);
                 awakems = -1000;
-//            }
+            }
         }
         
         uint8_t incomingByte;
@@ -166,7 +174,7 @@ void loop(void) {
 	}
         
         awakems += 1;
-        if (awakems > 200) {
+        if (awakems > 300) {
             sleepNow();
             awakems = 0;
         }
@@ -198,8 +206,14 @@ void sleepNow(void)
         radio.stopListening();
         radio.powerDown();
     }
-    GIMSK |= _BV(INT0);                       //enable INT0
-    MCUCR &= ~(_BV(ISC01) | _BV(ISC00));      //INT0 on low level
+    if (role == role_remote) {
+#if defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny85__)
+        GIMSK |= _BV(INT0);                       //enable INT0
+        MCUCR &= ~(_BV(ISC01) | _BV(ISC00));      //INT0 on low level
+#else
+
+#endif
+    }
     ACSR |= _BV(ACD);                         //disable the analog comparator
     ADCSRA &= ~_BV(ADEN);                     //disable ADC
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
@@ -216,10 +230,15 @@ void sleepNow(void)
     sei();                         //ensure interrupts enabled so we can wake up again
     sleep_cpu();                   //go to sleep
     cli();                         //wake up here, disable interrupts
-    GIMSK = 0x00;                  //disable INT0
+    if (role == role_remote) {
+#if defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny85__)
+        GIMSK = 0x00;                  //disable INT0
+#else
+
+#endif
+    }
     sleep_disable();               
     sei();                         //enable interrupts again (but INT0 is disabled from above)
-    radio.powerUp();
     if (role == role_led) {
       radio.startListening();
     }

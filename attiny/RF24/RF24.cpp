@@ -440,14 +440,6 @@ void RF24::powerDown(void)
 
 /****************************************************************************/
 
-void RF24::standBy(void)
-{
-    ce(LOW);
-  write_register(CONFIG, (read_register(CONFIG) & _BV(PWR_UP)) | ~_BV(PRIM_RX));
-}
-
-/****************************************************************************/
-
 void RF24::powerUp(void)
 {
   write_register(CONFIG,read_register(CONFIG) | _BV(PWR_UP));
