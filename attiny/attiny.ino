@@ -36,8 +36,8 @@ typedef enum {
 role_e role;
 const char* role_friendly_name[] = { "invalid", "Remote", "LED Board"};
 
-bool led_state;
-bool sensor_state;
+uint8_t led_state;
+uint8_t sensor_state;
 volatile int awakems = 0;
 int send_tries = 0;
 bool send_ok = true;
@@ -105,8 +105,7 @@ void loop(void) {
     if (role == role_remote) {
         // Get the current state of buttons, and
         // Test if the current state is different from the last state we sent
-        delay(5);
-        bool state = !digitalRead(sensor_pin);
+        uint8_t state = !digitalRead(sensor_pin);
         printf("Sensor state: %d\n", state);
         if (state != sensor_state) {
             different = true;
@@ -121,7 +120,7 @@ void loop(void) {
             digitalWrite(led_pin, led_state);
             radio.powerUp();
             delay(10);
-            send_ok = radio.write( &sensor_state, sizeof(bool), false );
+            send_ok = radio.write( &sensor_state, sizeof(uint8_t), false );
             if (send_ok) {
                 printf("ok\n\r");
             } else {
@@ -147,17 +146,17 @@ void loop(void) {
     if (role == role_led) {
         if (radio.available()) {
             // Dump the payloads until we've gotten everything
-            bool done = false;
+            uint8_t done;
             awakems = 0;
             while (!done) {
-                done = radio.read( &sensor_state, sizeof(bool) );
+                done = radio.read( &sensor_state, sizeof(uint8_t) );
             }
 //            if (led_state != sensor_state) {
 //                different = true;
                 printf("Got buttons: %d\n\r", sensor_state);
                 led_state = sensor_state;
                 digitalWrite(led_pin, led_state);
-                awakems = -1000;
+                awakems = -10000;
 //            }
         }
         
