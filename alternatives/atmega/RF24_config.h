@@ -34,9 +34,6 @@ extern HardwareSPI SPI;
 #define IF_SERIAL_DEBUG(x) ({x;})
 #else
 #define IF_SERIAL_DEBUG(x)
-#if defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny85__)
-#define printf_P(...)
-#endif
 #endif
 
 // Avoid spurious warnings

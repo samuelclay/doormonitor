@@ -3,9 +3,9 @@
 #include <avr/wdt.h>
 
 #include <SPI.h>
-#include <nRF24L01.h>
-#include <RF24.h>
-#include <printf.h>
+#include "nRF24L01.h"
+#include "RF24.h"
+#include "printf.h"
 
 void sleepNow(void);
 void setup_watchdog(uint8_t prescalar);
@@ -18,13 +18,13 @@ const int led_pin = 1;
 const int sleep_pin = 8;
 #else
 RF24 radio(9, 10);
-const int role_pin = 8;
+const int role_pin = 6;
 const int sensor_pin = 2;
-const int led_pin = 7;
+const int led_pin = 4;
 const int sleep_pin = 5;
 #endif 
 
-const uint64_t pipe = 0xE8E8F0F0F1LL;
+const uint64_t pipe = 0xA8E8F0F0F1LL;
 
 typedef enum { wdt_16ms = 0, wdt_32ms, wdt_64ms, wdt_128ms, wdt_250ms, 
                wdt_500ms, wdt_1s, wdt_2s, wdt_4s, wdt_8s } wdt_prescalar_e;
@@ -36,11 +36,11 @@ typedef enum {
 role_e role;
 const char* role_friendly_name[] = { "invalid", "Remote", "LED Board"};
 
-uint8_t led_state;
-uint8_t sensor_state;
+uint8_t led_state = 0;
+uint8_t sensor_state = 0;
 volatile int awakems = 0;
 int send_tries = 0;
-bool send_ok = true;
+bool send_ok = false;
 
 void setup(void) {
     // set up the role pin
@@ -109,7 +109,7 @@ void loop(void) {
         printf("Sensor state: %d\n", state);
         if (state != sensor_state) {
             different = true;
-            send_tries = 500;
+            send_tries = 50;
             sensor_state = state;
             led_state = sensor_state;
         }
@@ -120,7 +120,7 @@ void loop(void) {
             digitalWrite(led_pin, led_state);
             radio.powerUp();
             delay(10);
-            send_ok = radio.write( &sensor_state, sizeof(uint8_t), false );
+            send_ok = radio.write( &sensor_state, sizeof(uint8_t) );
             if (send_ok) {
                 printf("ok\n\r");
             } else {
@@ -128,7 +128,7 @@ void loop(void) {
                 send_tries--;
                 digitalWrite(sleep_pin, LOW);
                 digitalWrite(led_pin, LOW);
-                delay(50);        
+                delay(25);        
                 digitalWrite(sleep_pin, HIGH);            
                 digitalWrite(led_pin, led_state);            
             }
@@ -146,18 +146,15 @@ void loop(void) {
     if (role == role_led) {
         if (radio.available()) {
             // Dump the payloads until we've gotten everything
-            uint8_t done;
+            bool done = false;
             awakems = 0;
             while (!done) {
                 done = radio.read( &sensor_state, sizeof(uint8_t) );
             }
-//            if (led_state != sensor_state) {
-//                different = true;
-                printf("Got buttons: %d\n\r", sensor_state);
-                led_state = sensor_state;
-                digitalWrite(led_pin, led_state);
-                awakems = -10000;
-//            }
+            printf("Got buttons: %d\n\r", sensor_state);
+            led_state = sensor_state;
+            digitalWrite(led_pin, led_state);
+            awakems = -10000;
         }
         
         uint8_t incomingByte;
@@ -176,7 +173,7 @@ void loop(void) {
 	}
         
         awakems += 1;
-        if (awakems > 400) {
+        if (awakems > 500) {
             sleepNow();
             awakems = 0;
         }
@@ -250,7 +247,7 @@ void sleepNow(void)
 #if defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny85__)
 ISR(INT0_vect) {
     awakems = 0;
-}  
+}
 ISR(PCINT18_vect) {
     awakems = 0;
 }  
