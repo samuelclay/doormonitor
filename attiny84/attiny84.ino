@@ -16,15 +16,16 @@ const int role_pin = 10;
 const int sensor_pin = 2;
 const int led_pin = 1;
 const int sleep_pin = 8;
+const uint64_t pipe = 0xA8E8F0F0F1LL;
 #else
 RF24 radio(9, 10);
 const int role_pin = 6;
 const int sensor_pin = 2;
 const int led_pin = 4;
 const int sleep_pin = 5;
+const uint64_t pipe = 0xE8E8F0F0F1LL;
 #endif 
 
-const uint64_t pipe = 0xA8E8F0F0F1LL;
 
 typedef enum { wdt_16ms = 0, wdt_32ms, wdt_64ms, wdt_128ms, wdt_250ms, 
                wdt_500ms, wdt_1s, wdt_2s, wdt_4s, wdt_8s } wdt_prescalar_e;
@@ -109,7 +110,7 @@ void loop(void) {
         printf("Sensor state: %d\n", state);
         if (state != sensor_state) {
             different = true;
-            send_tries = 50;
+            send_tries = 200;
             sensor_state = state;
             led_state = sensor_state;
         }
