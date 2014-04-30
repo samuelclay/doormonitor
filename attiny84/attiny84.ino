@@ -2,7 +2,7 @@
 #include <avr/interrupt.h> 
 #include <avr/wdt.h>
 
-#include <SPI.h>
+#include "SPI.h"
 #include "nRF24L01.h"
 #include "RF24.h"
 #include "printf.h"
@@ -110,7 +110,7 @@ void loop(void) {
         printf("Sensor state: %d\n", state);
         if (state != sensor_state) {
             different = true;
-            send_tries = 200;
+            send_tries = 1000;
             sensor_state = state;
             led_state = sensor_state;
         }
