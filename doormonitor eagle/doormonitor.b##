@@ -673,8 +673,8 @@ Please make sure your boards conform to these design rules.</description>
 <element name="BATTERY" library="SparkFun-Electromechanical" package="BATTCON_20MM_4LEGS_OVERPASTE" value="CR2032" x="10.668" y="12.7" rot="R270"/>
 <element name="C2" library="SparkFun-Passives" package="0402-CAP" value="18pF" x="34.036" y="7.874" rot="R180"/>
 <element name="C4" library="SparkFun-Passives" package="0402-CAP" value="18pF" x="29.464" y="7.874"/>
-<element name="SJ2" library="SparkFun-Passives" package="SJ_2S" value="Receiver?" x="30.48" y="27.432" rot="R270"/>
-<element name="U1" library="SparkFun-DigitalIC" package="SO14" value="ATTINY84" x="32.004" y="20.828"/>
+<element name="SJ1" library="SparkFun-Passives" package="SJ_2S" value="Receiver?" x="30.48" y="27.432" rot="R270"/>
+<element name="MCU" library="SparkFun-DigitalIC" package="SO14" value="ATTINY84" x="32.004" y="20.828"/>
 <element name="S1" library="SparkFun-Electromechanical" package="REED_SWITCH_PTH" value="REED SWITCH" x="27.432" y="2.032" rot="R180"/>
 <element name="Y1" library="remote" package="NX8045GB" value="8MHz" x="32.004" y="12.192"/>
 <element name="LED1" library="SparkFun-LED" package="LED10MM" value="" x="15.748" y="32.258"/>
@@ -705,10 +705,10 @@ Please make sure your boards conform to these design rules.</description>
 </polygon>
 <contactref element="ISP" pad="6"/>
 <contactref element="RADIO" pad="1"/>
-<contactref element="U1" pad="14"/>
+<contactref element="MCU" pad="14"/>
 <contactref element="C4" pad="2"/>
 <contactref element="C2" pad="2"/>
-<contactref element="SJ2" pad="1"/>
+<contactref element="SJ1" pad="1"/>
 <contactref element="BATTERY" pad="2"/>
 <contactref element="S1" pad="P$2"/>
 <contactref element="LED1" pad="C"/>
@@ -745,7 +745,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="MISO">
 <contactref element="ISP" pad="1"/>
 <contactref element="RADIO" pad="6"/>
-<contactref element="U1" pad="8"/>
+<contactref element="MCU" pad="8"/>
 <wire x1="35.814" y1="23.628" x2="35.814" y2="26.67" width="0.1524" layer="1"/>
 <wire x1="35.814" y1="26.67" x2="30.226" y2="32.258" width="0.1524" layer="1"/>
 <wire x1="7.57" y1="34.998" x2="24.946" y2="34.998" width="0.1524" layer="16"/>
@@ -756,7 +756,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="MOSI">
 <contactref element="ISP" pad="4"/>
 <contactref element="RADIO" pad="7"/>
-<contactref element="U1" pad="7"/>
+<contactref element="MCU" pad="7"/>
 <wire x1="35.814" y1="18.028" x2="35.814" y2="20.574" width="0.1524" layer="1"/>
 <wire x1="35.814" y1="20.574" x2="37.846" y2="22.606" width="0.1524" layer="1"/>
 <wire x1="37.846" y1="22.606" x2="37.846" y2="35.306" width="0.1524" layer="1"/>
@@ -772,7 +772,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="SCK">
 <contactref element="ISP" pad="3"/>
 <contactref element="RADIO" pad="5"/>
-<contactref element="U1" pad="9"/>
+<contactref element="MCU" pad="9"/>
 <wire x1="34.544" y1="23.628" x2="34.544" y2="26.162" width="0.1524" layer="1"/>
 <wire x1="34.544" y1="26.162" x2="30.988" y2="29.718" width="0.1524" layer="1"/>
 <wire x1="30.988" y1="29.718" x2="30.734" y2="29.718" width="0.1524" layer="1"/>
@@ -788,7 +788,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="ISP" pad="2"/>
 <contactref element="RADIO" pad="2"/>
 <contactref element="R8" pad="1"/>
-<contactref element="U1" pad="1"/>
+<contactref element="MCU" pad="1"/>
 <contactref element="BATTERY" pad="1"/>
 <wire x1="12.218" y1="23.7" x2="22.522" y2="23.7" width="0.1524" layer="1"/>
 <wire x1="22.522" y1="23.7" x2="28.194" y2="18.028" width="0.1524" layer="1"/>
@@ -816,7 +816,7 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="RESET">
 <contactref element="ISP" pad="5"/>
 <contactref element="R8" pad="2"/>
-<contactref element="U1" pad="4"/>
+<contactref element="MCU" pad="4"/>
 <wire x1="2.49" y1="34.998" x2="2.594" y2="34.998" width="0.1524" layer="1"/>
 <wire x1="2.594" y1="34.998" x2="3.81" y2="33.782" width="0.1524" layer="1"/>
 <wire x1="32.004" y1="18.028" x2="31.998" y2="18.028" width="0.1524" layer="1"/>
@@ -835,7 +835,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="CE">
 <contactref element="RADIO" pad="3"/>
-<contactref element="U1" pad="5"/>
+<contactref element="MCU" pad="5"/>
 <wire x1="33.274" y1="18.028" x2="33.274" y2="21.082" width="0.1524" layer="1"/>
 <wire x1="33.274" y1="21.082" x2="34.036" y2="21.844" width="0.1524" layer="1"/>
 <wire x1="34.036" y1="21.844" x2="35.814" y2="21.844" width="0.1524" layer="1"/>
@@ -847,7 +847,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="CSN">
 <contactref element="RADIO" pad="4"/>
-<contactref element="U1" pad="6"/>
+<contactref element="MCU" pad="6"/>
 <wire x1="34.544" y1="18.028" x2="34.544" y2="21.082" width="0.1524" layer="1"/>
 <via x="34.544" y="21.082" extent="1-16" drill="0.3302"/>
 <wire x1="34.544" y1="21.082" x2="34.544" y2="30.48" width="0.1524" layer="16"/>
@@ -855,11 +855,8 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="N$1">
 </signal>
-<signal name="RST">
-<contactref element="U1" pad="10"/>
-</signal>
 <signal name="N$3">
-<contactref element="U1" pad="3"/>
+<contactref element="MCU" pad="3"/>
 <contactref element="C2" pad="1"/>
 <contactref element="Y1" pad="P$2"/>
 <wire x1="30.734" y1="18.028" x2="30.734" y2="16.962" width="0.1524" layer="1"/>
@@ -868,7 +865,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="34.686" y1="11.374" x2="35.504" y2="12.192" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$4">
-<contactref element="U1" pad="2"/>
+<contactref element="MCU" pad="2"/>
 <contactref element="C4" pad="1"/>
 <contactref element="Y1" pad="P$1"/>
 <wire x1="29.464" y1="18.028" x2="29.464" y2="13.152" width="0.1524" layer="1"/>
@@ -877,13 +874,13 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="28.814" y1="11.882" x2="28.504" y2="12.192" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$2">
-<contactref element="U1" pad="13"/>
-<contactref element="SJ2" pad="2"/>
+<contactref element="MCU" pad="13"/>
+<contactref element="SJ1" pad="2"/>
 <wire x1="29.464" y1="23.628" x2="29.464" y2="26.0041" width="0.1524" layer="1"/>
 <wire x1="29.464" y1="26.0041" x2="30.48" y2="27.0201" width="0.1524" layer="1"/>
 </signal>
 <signal name="REED">
-<contactref element="U1" pad="11"/>
+<contactref element="MCU" pad="11"/>
 <contactref element="S1" pad="P$1"/>
 <wire x1="36.322" y1="15.494" x2="32.004" y2="19.812" width="0.1524" layer="16"/>
 <via x="32.004" y="19.812" extent="1-16" drill="0.3302"/>
@@ -891,7 +888,7 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="36.322" y1="15.494" x2="36.322" y2="2.032" width="0.1524" layer="16"/>
 </signal>
 <signal name="LED">
-<contactref element="U1" pad="12"/>
+<contactref element="MCU" pad="12"/>
 <contactref element="R1" pad="1"/>
 <wire x1="30.734" y1="23.628" x2="30.734" y2="25.146" width="0.1524" layer="1"/>
 <via x="30.734" y="25.146" extent="1-16" drill="0.3302"/>
