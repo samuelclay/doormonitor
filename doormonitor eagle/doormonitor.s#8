@@ -4839,7 +4839,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="BATTERY" library="SparkFun-Electromechanical" deviceset="BATTERY" device="20MM_4LEGS_OVERPASTE" value="CR2032"/>
 <part name="C2" library="SparkFun-Passives" deviceset="CAP" device="0402-CAP" value="18pF"/>
 <part name="C4" library="SparkFun-Passives" deviceset="CAP" device="0402-CAP" value="18pF"/>
-<part name="SJ2" library="SparkFun-Passives" deviceset="SOLDERJUMPER" device="NC" value="Connect for receiver"/>
+<part name="SJ2" library="SparkFun-Passives" deviceset="SOLDERJUMPER" device="NC" value="Receiver?"/>
 <part name="U1" library="SparkFun-DigitalIC" deviceset="ATTINY84" device=""/>
 <part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>

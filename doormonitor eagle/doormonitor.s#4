@@ -5481,7 +5481,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <part name="BATTERY" library="SparkFun-Electromechanical" deviceset="BATTERY" device="20MM_4LEGS_OVERPASTE" value="CR2032"/>
 <part name="C2" library="SparkFun-Passives" deviceset="CAP" device="0402-CAP" value="18pF"/>
 <part name="C4" library="SparkFun-Passives" deviceset="CAP" device="0402-CAP" value="18pF"/>
-<part name="SJ2" library="SparkFun-Passives" deviceset="SOLDERJUMPER" device="NC" value="Receiver?"/>
+<part name="SJ1" library="SparkFun-Passives" deviceset="SOLDERJUMPER" device="NC" value="Receiver?"/>
 <part name="U1" library="SparkFun-DigitalIC" deviceset="ATTINY84" device=""/>
 <part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5504,7 +5504,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <plain>
 <text x="2.54" y="5.08" size="1.778" layer="97">Closed: Target is powered from 5V USB</text>
 <text x="2.54" y="2.54" size="1.778" layer="97">Open: Target must have external VCC provided</text>
-<text x="2.54" y="7.62" size="1.778" layer="97">SJ2:</text>
+<text x="2.54" y="7.62" size="1.778" layer="97">SJ1:</text>
 </plain>
 <instances>
 <instance part="ISP" gate="G$1" x="128.27" y="17.78"/>
@@ -5519,7 +5519,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <attribute name="NAME" x="23.876" y="60.96" size="1.778" layer="95"/>
 <attribute name="VALUE" x="23.114" y="56.388" size="1.778" layer="96"/>
 </instance>
-<instance part="SJ2" gate="1" x="30.48" y="43.18" smashed="yes">
+<instance part="SJ1" gate="1" x="30.48" y="43.18" smashed="yes">
 <attribute name="NAME" x="28.194" y="39.116" size="1.778" layer="95"/>
 </instance>
 <instance part="U1" gate="G$1" x="63.5" y="58.42" rot="MR0"/>
@@ -5573,7 +5573,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="GND13" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="SJ2" gate="1" pin="1"/>
+<pinref part="SJ1" gate="1" pin="1"/>
 <pinref part="GND1" gate="1" pin="GND"/>
 <wire x1="25.4" y1="43.18" x2="22.86" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="22.86" y1="43.18" x2="22.86" y2="40.64" width="0.1524" layer="91"/>
@@ -5762,7 +5762,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <net name="N$2" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="(PCINT0/AREF/ADC0)PA0"/>
-<pinref part="SJ2" gate="1" pin="2"/>
+<pinref part="SJ1" gate="1" pin="2"/>
 <wire x1="38.1" y1="43.18" x2="35.56" y2="43.18" width="0.1524" layer="91"/>
 </segment>
 </net>

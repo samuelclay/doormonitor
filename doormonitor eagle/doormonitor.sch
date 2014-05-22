@@ -5729,13 +5729,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <label x="35.56" y="60.96" size="1.27" layer="95" rot="MR0" xref="yes"/>
 </segment>
 </net>
-<net name="RST" class="0">
-<segment>
-<wire x1="35.56" y1="50.8" x2="38.1" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="MCU" gate="G$1" pin="(PCINT3/T0/ADC3)PA3"/>
-<label x="35.56" y="50.8" size="1.27" layer="95" rot="MR0" xref="yes"/>
-</segment>
-</net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="MCU" gate="G$1" pin="(PCINT9/XTAL2)PB1"/>

@@ -679,7 +679,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="Y1" library="remote" package="NX8045GB" value="8MHz" x="32.004" y="12.192"/>
 <element name="LED1" library="SparkFun-LED" package="LED10MM" value="" x="15.748" y="32.258"/>
 <element name="R1" library="SparkFun-Passives" package="0805" value="" x="23.876" y="32.512" rot="R90"/>
-<element name="JP1" library="SparkFun-Connectors" package="JST-2-PTH-VERT" value="M02JST-PTH-VERT" x="3.048" y="3.556" rot="R270"/>
+<element name="JP1" library="SparkFun-Connectors" package="JST-2-PTH-VERT" value="JST BATT" x="3.048" y="3.556" rot="R270"/>
 </elements>
 <signals>
 <signal name="GND">

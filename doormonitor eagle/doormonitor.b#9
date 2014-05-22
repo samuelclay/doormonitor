@@ -679,7 +679,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="Y1" library="remote" package="NX8045GB" value="8MHz" x="32.004" y="12.192"/>
 <element name="LED1" library="SparkFun-LED" package="LED10MM" value="" x="15.748" y="32.258"/>
 <element name="R1" library="SparkFun-Passives" package="0805" value="" x="23.876" y="32.512" rot="R90"/>
-<element name="JP1" library="SparkFun-Connectors" package="JST-2-PTH-VERT" value="M02JST-PTH-VERT" x="2.032" y="-4.826"/>
+<element name="JP1" library="SparkFun-Connectors" package="JST-2-PTH-VERT" value="M02JST-PTH-VERT" x="3.302" y="13.208" rot="R90"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -714,7 +714,8 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="LED1" pad="C"/>
 <wire x1="33.386" y1="7.874" x2="32.004" y2="7.874" width="0.1524" layer="1"/>
 <wire x1="32.004" y1="7.874" x2="30.114" y2="7.874" width="0.1524" layer="1"/>
-<wire x1="10.668" y1="12.7" x2="10.668" y2="9.906" width="0.1524" layer="1"/>
+<wire x1="10.668" y1="12.7" x2="10.668" y2="12.192" width="0.1524" layer="1"/>
+<wire x1="10.668" y1="12.192" x2="10.668" y2="9.906" width="0.1524" layer="1"/>
 <wire x1="10.668" y1="9.906" x2="18.542" y2="2.032" width="0.1524" layer="1"/>
 <wire x1="18.542" y1="2.032" x2="25.4" y2="2.032" width="0.1524" layer="1"/>
 <wire x1="25.4" y1="2.032" x2="30.226" y2="6.858" width="0.1524" layer="1"/>
@@ -741,7 +742,10 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="1.016" y1="35.56" x2="1.016" y2="33.932" width="0.1524" layer="16"/>
 <wire x1="1.016" y1="33.932" x2="2.49" y2="32.458" width="0.1524" layer="16"/>
 <contactref element="JP1" pad="1"/>
-<wire x1="1.032" y1="-5.376" x2="10.668" y2="9.906" width="0" layer="19" extent="1-1"/>
+<wire x1="3.852" y1="12.208" x2="10.938" y2="12.208" width="0.1524" layer="1"/>
+<wire x1="10.938" y1="12.208" x2="11.176" y2="12.446" width="0.1524" layer="1"/>
+<wire x1="11.176" y1="12.446" x2="10.922" y2="12.446" width="0.1524" layer="1"/>
+<wire x1="10.922" y1="12.446" x2="10.668" y2="12.192" width="0.1524" layer="1"/>
 </signal>
 <signal name="MISO">
 <contactref element="ISP" pad="1"/>
@@ -806,7 +810,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="4.048" y1="28.702" x2="7.216" y2="28.702" width="0.1524" layer="1"/>
 <wire x1="7.216" y1="28.702" x2="12.218" y2="23.7" width="0.1524" layer="1"/>
 <contactref element="JP1" pad="2"/>
-<wire x1="3.032" y1="-5.376" x2="12.218" y2="23.7" width="0" layer="19" extent="1-1"/>
+<wire x1="3.852" y1="14.208" x2="3.852" y2="15.334" width="0.1524" layer="1"/>
+<wire x1="3.852" y1="15.334" x2="12.218" y2="23.7" width="0.1524" layer="1"/>
 </signal>
 <signal name="RESET">
 <contactref element="ISP" pad="5"/>

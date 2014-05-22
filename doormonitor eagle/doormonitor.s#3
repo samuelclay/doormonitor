@@ -5502,8 +5502,8 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <sheets>
 <sheet>
 <plain>
-<text x="2.54" y="5.08" size="1.778" layer="97">Closed: Target is powered from 5V USB</text>
-<text x="2.54" y="2.54" size="1.778" layer="97">Open: Target must have external VCC provided</text>
+<text x="2.54" y="5.08" size="1.778" layer="97">Closed: Receiver</text>
+<text x="2.54" y="2.54" size="1.778" layer="97">Open: Remote</text>
 <text x="2.54" y="7.62" size="1.778" layer="97">SJ1:</text>
 </plain>
 <instances>

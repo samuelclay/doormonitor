@@ -673,7 +673,7 @@ Please make sure your boards conform to these design rules.</description>
 <element name="BATTERY" library="SparkFun-Electromechanical" package="BATTCON_20MM_4LEGS_OVERPASTE" value="CR2032" x="10.668" y="12.7" rot="R270"/>
 <element name="C2" library="SparkFun-Passives" package="0402-CAP" value="18pF" x="34.036" y="7.874" rot="R180"/>
 <element name="C4" library="SparkFun-Passives" package="0402-CAP" value="18pF" x="29.464" y="7.874"/>
-<element name="SJ2" library="SparkFun-Passives" package="SJ_2S" value="Receiver?" x="30.48" y="27.432" rot="R270"/>
+<element name="SJ1" library="SparkFun-Passives" package="SJ_2S" value="Receiver?" x="30.48" y="27.432" rot="R270"/>
 <element name="U1" library="SparkFun-DigitalIC" package="SO14" value="ATTINY84" x="32.004" y="20.828"/>
 <element name="S1" library="SparkFun-Electromechanical" package="REED_SWITCH_PTH" value="REED SWITCH" x="27.432" y="2.032" rot="R180"/>
 <element name="Y1" library="remote" package="NX8045GB" value="8MHz" x="32.004" y="12.192"/>
@@ -708,7 +708,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="U1" pad="14"/>
 <contactref element="C4" pad="2"/>
 <contactref element="C2" pad="2"/>
-<contactref element="SJ2" pad="1"/>
+<contactref element="SJ1" pad="1"/>
 <contactref element="BATTERY" pad="2"/>
 <contactref element="S1" pad="P$2"/>
 <contactref element="LED1" pad="C"/>
@@ -878,7 +878,7 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="N$2">
 <contactref element="U1" pad="13"/>
-<contactref element="SJ2" pad="2"/>
+<contactref element="SJ1" pad="2"/>
 <wire x1="29.464" y1="23.628" x2="29.464" y2="26.0041" width="0.1524" layer="1"/>
 <wire x1="29.464" y1="26.0041" x2="30.48" y2="27.0201" width="0.1524" layer="1"/>
 </signal>

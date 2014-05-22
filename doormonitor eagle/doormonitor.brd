@@ -855,9 +855,6 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="N$1">
 </signal>
-<signal name="RST">
-<contactref element="MCU" pad="10"/>
-</signal>
 <signal name="N$3">
 <contactref element="MCU" pad="3"/>
 <contactref element="C2" pad="1"/>
