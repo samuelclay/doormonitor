@@ -519,6 +519,20 @@ Extended by Federico Battaglin &lt;author&gt;&amp;lt;federico.rd@fdpinternationa
 </package>
 </packages>
 </library>
+<library name="thinkmaketest">
+<packages>
+<package name="FANCYVIA">
+<pad name="VIA" x="0" y="0" drill="0.9" diameter="1.27" stop="no"/>
+<rectangle x1="-0.3175" y1="-0.3175" x2="0.3175" y2="0.3175" layer="21"/>
+<rectangle x1="-1.27" y1="-1.27" x2="1.27" y2="1.27" layer="29"/>
+<rectangle x1="-1.27" y1="-1.27" x2="1.27" y2="1.27" layer="30"/>
+<wire x1="1.25" y1="1.25" x2="-1.25" y2="-1.25" width="0.2032" layer="42"/>
+<wire x1="-1.25" y1="1.25" x2="1.25" y2="-1.25" width="0.2032" layer="42"/>
+<wire x1="1.25" y1="1.25" x2="-1.25" y2="-1.25" width="0.2032" layer="41"/>
+<wire x1="1.25" y1="-1.25" x2="-1.25" y2="1.25" width="0.2032" layer="41"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -720,6 +734,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="SUPPLIER" value="Atmel" x="17.526" y="6.858" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_FARNELL" value="1636955" x="17.526" y="6.858" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
+<element name="U$1" library="thinkmaketest" package="FANCYVIA" value="VIA" x="0.254" y="-2.794"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -908,6 +923,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="29.21" y1="13.66" x2="28.25" y2="12.7" width="0.1524" layer="1"/>
 <wire x1="28.25" y1="12.7" x2="28.25" y2="7.934" width="0.1524" layer="1"/>
 <wire x1="28.25" y1="7.934" x2="28.31" y2="7.874" width="0.1524" layer="1"/>
+<contactref element="U$1" pad="VIA"/>
+<wire x1="0.254" y1="-2.794" x2="28.25" y2="7.934" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="C4" pad="1"/>

@@ -145,8 +145,8 @@
 <wire x1="37.338" y1="38.608" x2="1.27" y2="38.608" width="0.25" layer="20"/>
 <wire x1="1.27" y1="38.608" x2="0" y2="37.338" width="0.254" layer="20" curve="90"/>
 <wire x1="0" y1="37.338" x2="0" y2="1.27" width="0.25" layer="20"/>
-<text x="25.146" y="4.572" size="1.016" layer="25" font="vector" rot="R90">Wireless Door Monitor Rev. 1
-Samuel Clay - 29 April 2014</text>
+<text x="25.146" y="4.572" size="1.016" layer="25" font="vector" rot="R90">Wireless Door Monitor Rev. 2
+Samuel Clay - 27 May 2014</text>
 <wire x1="4.318" y1="36.576" x2="5.588" y2="36.576" width="0.1524" layer="21"/>
 </plain>
 <libraries>
@@ -734,7 +734,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="SUPPLIER" value="Atmel" x="17.526" y="6.858" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_FARNELL" value="1636955" x="17.526" y="6.858" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="U$1" library="thinkmaketest" package="FANCYVIA" value="VIA" x="0.254" y="-2.794"/>
+<element name="U$1" library="thinkmaketest" package="FANCYVIA" value="VIA" x="26.67" y="7.874"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -924,7 +924,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="28.25" y1="12.7" x2="28.25" y2="7.934" width="0.1524" layer="1"/>
 <wire x1="28.25" y1="7.934" x2="28.31" y2="7.874" width="0.1524" layer="1"/>
 <contactref element="U$1" pad="VIA"/>
-<wire x1="0.254" y1="-2.794" x2="28.25" y2="7.934" width="0" layer="19" extent="1-1"/>
+<wire x1="26.67" y1="7.874" x2="26.67" y2="11.12" width="0.1524" layer="1"/>
+<wire x1="26.67" y1="11.12" x2="28.25" y2="12.7" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$4">
 <contactref element="C4" pad="1"/>

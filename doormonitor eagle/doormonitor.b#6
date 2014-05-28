@@ -888,7 +888,11 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="REED">
 <contactref element="S1" pad="P$1"/>
 <contactref element="ATTINY84" pad="11"/>
-<wire x1="36.322" y1="2.032" x2="31.75" y2="23.2918" width="0" layer="19" extent="1-1"/>
+<wire x1="36.322" y1="2.032" x2="36.322" y2="11.176" width="0.1524" layer="16"/>
+<wire x1="36.322" y1="11.176" x2="31.75" y2="15.748" width="0.1524" layer="16"/>
+<wire x1="31.75" y1="15.748" x2="31.75" y2="21.59" width="0.1524" layer="16"/>
+<via x="31.75" y="21.59" extent="1-16" drill="0.3302"/>
+<wire x1="31.75" y1="21.59" x2="31.75" y2="23.2918" width="0.1524" layer="1"/>
 </signal>
 <signal name="LED">
 <contactref element="R1" pad="1"/>

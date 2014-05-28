@@ -145,7 +145,7 @@
 <wire x1="37.338" y1="38.608" x2="1.27" y2="38.608" width="0.25" layer="20"/>
 <wire x1="1.27" y1="38.608" x2="0" y2="37.338" width="0.254" layer="20" curve="90"/>
 <wire x1="0" y1="37.338" x2="0" y2="1.27" width="0.25" layer="20"/>
-<text x="25.146" y="4.572" size="1.016" layer="25" font="vector" rot="R90">Wireless Door Monitor Rev. 2
+<text x="23.368" y="4.572" size="1.016" layer="25" font="vector" rot="R90">Wireless Door Monitor Rev. 2
 Samuel Clay - 27 May 2014</text>
 <wire x1="4.318" y1="36.576" x2="5.588" y2="36.576" width="0.1524" layer="21"/>
 </plain>

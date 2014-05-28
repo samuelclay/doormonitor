@@ -778,6 +778,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="24.946" y1="34.998" x2="26.416" y2="33.528" width="0.1524" layer="16"/>
 <wire x1="26.416" y1="33.528" x2="28.956" y2="33.528" width="0.1524" layer="16"/>
 <wire x1="28.956" y1="33.528" x2="30.226" y2="32.258" width="0.1524" layer="16"/>
+<contactref element="ATTINY84" pad="8"/>
+<wire x1="35.814" y1="26.67" x2="35.56" y2="23.2918" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="MOSI">
 <contactref element="ISP" pad="4"/>
@@ -792,6 +794,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="6.35" y1="33.782" x2="9.652" y2="33.782" width="0.1524" layer="1"/>
 <wire x1="9.652" y1="33.782" x2="10.668" y2="34.798" width="0.1524" layer="1"/>
 <wire x1="10.668" y1="34.798" x2="27.686" y2="34.798" width="0.1524" layer="1"/>
+<contactref element="ATTINY84" pad="7"/>
+<wire x1="35.814" y1="20.574" x2="35.56" y2="18.3642" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCK">
 <contactref element="ISP" pad="3"/>
@@ -805,6 +809,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="5.03" y1="35.002" x2="6.604" y2="36.576" width="0.1524" layer="16"/>
 <wire x1="6.604" y1="36.576" x2="28.448" y2="36.576" width="0.1524" layer="16"/>
 <wire x1="28.448" y1="36.576" x2="30.226" y2="34.798" width="0.1524" layer="16"/>
+<contactref element="ATTINY84" pad="9"/>
+<wire x1="34.544" y1="26.162" x2="34.29" y2="23.2918" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC">
 <contactref element="ISP" pad="2"/>
@@ -832,6 +838,8 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="2.048" y1="28.702" x2="2.048" y2="29.988" width="0.1524" layer="1"/>
 <wire x1="2.048" y1="29.988" x2="3.81" y2="31.75" width="0.1524" layer="1"/>
 <wire x1="3.81" y1="31.75" x2="3.81" y2="33.782" width="0.1524" layer="1"/>
+<contactref element="ATTINY84" pad="4"/>
+<wire x1="3.81" y1="31.75" x2="31.75" y2="18.3642" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CE">
 <contactref element="RADIO" pad="3"/>
@@ -842,9 +850,13 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="36.83" y1="35.052" x2="35.56" y2="36.322" width="0.1524" layer="1"/>
 <wire x1="35.56" y1="36.322" x2="34.29" y2="36.322" width="0.1524" layer="1"/>
 <wire x1="34.29" y1="36.322" x2="32.766" y2="34.798" width="0.1524" layer="1"/>
+<contactref element="ATTINY84" pad="6"/>
+<wire x1="34.29" y1="18.3642" x2="33.274" y2="21.082" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CSN">
 <contactref element="RADIO" pad="4"/>
+<contactref element="ATTINY84" pad="10"/>
+<wire x1="33.02" y1="23.2918" x2="32.766" y2="32.258" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 </signal>
@@ -870,12 +882,18 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="N$2">
 <contactref element="SJ1" pad="2"/>
+<contactref element="ATTINY84" pad="13"/>
+<wire x1="29.21" y1="23.2918" x2="27.432" y2="27.7821" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="REED">
 <contactref element="S1" pad="P$1"/>
+<contactref element="ATTINY84" pad="11"/>
+<wire x1="36.322" y1="2.032" x2="31.75" y2="23.2918" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="LED">
 <contactref element="R1" pad="1"/>
+<contactref element="ATTINY84" pad="12"/>
+<wire x1="30.48" y1="23.2918" x2="23.876" y2="31.612" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="R1" pad="2"/>
