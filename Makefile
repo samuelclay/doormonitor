@@ -6,8 +6,13 @@ DEVICE      = attiny84
 DEVICE_MCCU = attiny84     # See http://gcc.gnu.org/onlinedocs/gcc/AVR-Options.html
 PROGRAMMER ?= usbtiny
 F_CPU       = 8000000
-FUSE_L      = 0xFF
-FUSE_H      = 0xD7
+
+# With clock
+# FUSE_L      = 0xFF
+# FUSE_H      = 0xD7
+# Without clock
+FUSE_L      = 0xE2
+FUSE_H      = 0xDF
 
 AVRDUDE     = avrdude -v -v -v -v -c $(PROGRAMMER) -p $(DEVICE) -P usb
 
@@ -16,6 +21,7 @@ LIBS        += -I./libs/SPI
 LIBS        += -I./libs/RF24 
 LIBS        += -I./libs/avr
 LIBS        += -I./libs/SoftwareSerial
+LIBS        += -I./libs/pinchange
 LIBS        += -I./libs
 LIBS        += -I./src
 LIBS        += -I.
@@ -33,6 +39,7 @@ C_SRC   := libs/tiny/pins_arduino.o \
            libs/tiny/wiring_shift.o
 CPP_SRC := libs/SPI/SPI.o \
            libs/RF24/RF24.o \
+           libs/pinchange/pinchange.o \
            libs/tiny/main.o \
            libs/tiny/Print.o \
            libs/tiny/Tone.o \
@@ -42,8 +49,7 @@ CPP_SRC := libs/SPI/SPI.o \
            libs/tiny/TinyDebugSerial115200.o \
            libs/tiny/TinyDebugSerial38400.o \
            libs/tiny/TinyDebugSerial9600.o \
-           libs/tiny/TinyDebugSerialErrors.o \
-           libs/SoftwareSerial/SoftwareSerial.o
+           libs/tiny/TinyDebugSerialErrors.o
 SRC     := src/doormonitor.o
 
 OBJECTS = $(C_SRC:.c=.o) $(CPP_SRC:.cpp=.o) $(SRC:.cpp=.o)
